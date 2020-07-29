@@ -23,6 +23,8 @@ import Cocoa
 @objc(ChartXAxisRenderer)
 open class XAxisRenderer: AxisRendererBase
 {
+    private var customXAxisValues = false
+    
     @objc public init(viewPortHandler: ViewPortHandler, xAxis: XAxis?, transformer: Transformer?)
     {
         super.init(viewPortHandler: viewPortHandler, transformer: transformer, axis: xAxis)
@@ -57,9 +59,16 @@ open class XAxisRenderer: AxisRendererBase
         computeAxisValues(min: min, max: max)
     }
     
+    open func setupAxisValues(values: [Double]) {
+        self.axis?.entries = values
+        self.customXAxisValues = true
+    }
+    
     open override func computeAxisValues(min: Double, max: Double)
     {
-        super.computeAxisValues(min: min, max: max)
+        if !customXAxisValues {
+            super.computeAxisValues(min: min, max: max)
+        }
         
         computeSize()
     }
