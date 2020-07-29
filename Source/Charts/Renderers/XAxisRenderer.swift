@@ -229,7 +229,7 @@ open class XAxisRenderer: AxisRendererBase
                 let label = xAxis.valueFormatter?.stringForValue(xAxis.entries[i], axis: xAxis) ?? ""
 
                 let labelns = label as NSString
-                print(labelns)
+
                 if xAxis.isAvoidFirstLastClippingEnabled
                 {
                     // avoid clipping of the last
